@@ -1,0 +1,26 @@
+.page__content {
+  display: flex;
+  flex-direction: column;
+  max-width: 1920px;
+  width: 100%;
+}
+
+.heading {
+  font-size: 72px;
+}
+.subtitle {
+  margin: 6px 0px 0px;
+  font-size: 16px;
+}
+
+.discover-game-list {
+  margin-top: 12px;
+}
+
+.games-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  align-items: flex-start;
+  grid-gap: 24px;
+}

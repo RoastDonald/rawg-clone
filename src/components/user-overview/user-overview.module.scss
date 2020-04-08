@@ -1,0 +1,63 @@
+section {
+  width: 100%;
+  margin: 10px 20px;
+}
+
+.count {
+  margin: 0px 0px 0px 4px;
+  color: hsla(0, 0%, 100%, 0.4);
+}
+
+svg > path {
+  fill: hsla(0, 0%, 100%, 0.4);
+}
+
+.suggestionTitle {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  font-size: 18px;
+  text-transform: capitalize;
+  font-weight: 700;
+}
+
+.user_avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user_avatar_inner {
+  font-size: 16px;
+  font-weight: 900;
+}
+.user {
+  margin: 15px 0;
+  width: 100%;
+  display: flex;
+}
+
+.user_info {
+  font-weight: 700;
+  font-size: 14px;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.user_meta {
+  display: flex;
+}
+
+.user_meta_container {
+  margin: 0 3px;
+}
+
+.user_meta_data {
+  font-size: 12px;
+  margin-left: 4px;
+}

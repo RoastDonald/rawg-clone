@@ -1,0 +1,113 @@
+$optionColor: darken(
+  $color: #fff,
+  $amount: 50%,
+);
+
+.controll-panel,
+.controll-left,
+.controll-right {
+  display: flex;
+}
+
+.controll-panel {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.controll-left {
+  flex: 5 1 auto;
+}
+.controll-right {
+  flex: 1 1 auto;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.controll_buttons {
+  width: 45%;
+  display: flex;
+}
+
+.dropdown__content {
+  width: 100%;
+  display: flex;
+}
+
+.dropdown__button {
+  outline: none;
+  width: auto;
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.filter-button {
+  font-size: 14px;
+  width: auto;
+  min-width: 170px;
+  outline: none;
+  cursor: pointer;
+  background-color: hsla(0, 0%, 100%, 0.07);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #fff;
+}
+
+.button__content {
+  overflow: hidden;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 400;
+  width: 100%;
+  display: flex;
+}
+
+.button_image {
+  margin: 7px 3px 6px;
+  transform: rotate(90deg);
+  width: 7px;
+  height: 13px;
+  opacity: 0.3;
+}
+
+.button_item {
+  z-index: -10;
+}
+
+.button__title {
+  display: flex;
+  margin-right: 4px;
+}
+
+.ordered-option {
+  font-weight: 600;
+}
+
+.display-options {
+  color: darken($color: #fff, $amount: 50%);
+  justify-content: flex-end;
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.options {
+  margin-left: 6px;
+  display: flex;
+}
+
+.display-option {
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.5;
+  border-radius: 6px;
+  margin-left: 6px;
+  width: 48px;
+  height: 48px;
+  background-color: darken($color: $optionColor, $amount: 30%);
+}

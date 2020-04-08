@@ -1,0 +1,82 @@
+section {
+  width: 100%;
+  margin: 20px;
+}
+
+.suggestionTitle {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  font-size: 18px;
+  text-transform: capitalize;
+  font-weight: 700;
+}
+
+.card {
+  display: flex;
+  width: 100%;
+  margin: 15px 0px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.platforms {
+  display: flex;
+  &:first-child {
+    margin: 0;
+  }
+}
+
+.platform {
+  margin: 0 3px;
+  width: 12px;
+  height: 12px;
+  background-position: 50%;
+  line-height: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.meta {
+  display: flex;
+  width: 100%;
+  padding: 5px 0px;
+  cursor: default;
+}
+
+.gameName {
+  transition: color 0.3s ease;
+  cursor: pointer;
+  &:hover {
+    color: grey;
+  }
+}
+
+.cardInfo {
+  line-height: 1.6;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  margin: 0px 0px 0px 5px;
+}
+
+.count {
+  margin: 0px 0px 0px 4px;
+  color: hsla(0, 0%, 100%, 0.4);
+}
+
+.card_background {
+  display: block;
+  height: 42px;
+  width: 36px;
+  background-position: 50%;
+  border: none;
+  background-color: hsla(0, 0%, 100%, 0.05);
+  background-size: cover;
+  border-radius: 6px;
+  transition: opacity 0.3s ease;
+  &:hover {
+    opacity: 0.5;
+  }
+}

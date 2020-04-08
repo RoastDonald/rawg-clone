@@ -1,0 +1,12 @@
+@import '../../layouts/vars.scss';
+
+.searchResults {
+  z-index: 1000;
+  display: flex;
+  position: absolute;
+  width: 300px;
+  height: 100px;
+  background-color: black;
+  border-radius: 24px;
+  top: $headerHeight - 15px;
+}

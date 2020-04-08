@@ -1,0 +1,56 @@
+.suggestionTitle {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  font-size: 18px;
+  text-transform: capitalize;
+  font-weight: 700;
+}
+
+.collection {
+  display: flex;
+  width: 100%;
+  margin: 15px 0px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.collection_info {
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.collection_meta {
+  color: hsla(0, 0%, 100%, 0.4);
+  font-size: 12px;
+  margin-top: 7px;
+}
+
+.collection_card {
+  background-size: cover;
+  width: 15px;
+  height: 15px;
+  border-radius: 2px;
+  background-color: #0f0f0f;
+}
+
+.collection_cards {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  grid-gap: 4px;
+  width: 34px;
+  height: 34px;
+  margin-right: 1px;
+}
+
+section {
+  width: 100%;
+  margin: 10px 20px;
+}
+
+.count {
+  margin: 0px 0px 0px 4px;
+  color: hsla(0, 0%, 100%, 0.4);
+}
