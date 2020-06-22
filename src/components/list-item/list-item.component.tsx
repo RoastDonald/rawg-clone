@@ -31,7 +31,7 @@ export const ListItem: React.FC<ListItemProps> = ({ item }) => {
   console.log(item);
   return (
     <div
-      className='game-item'
+      className="game-item"
       key={item.id}
       onMouseEnter={() => {
         setSrc(item.clip?.clips[320] || '');
@@ -50,18 +50,18 @@ export const ListItem: React.FC<ListItemProps> = ({ item }) => {
         }
       }}
     >
-      <div className='media-content'>
-        <div className='media-content-wrapper'>
+      <div className="media-content">
+        <div className="media-content-wrapper">
           <div>
-            <div className='play-container'>
-              <div className='play-button'>
+            <div className="play-container">
+              <div className="play-button">
                 <PlaySVG width={16} />
               </div>
-              <span className='play-title'>Play full video</span>
+              <span className="play-title">Play full video</span>
             </div>
             {isLoading ? (
-              <div className='loader-wrapper'>
-                <div className='lds-ripple'>
+              <div className="loader-wrapper">
+                <div className="lds-ripple">
                   <div></div>
                   <div></div>
                 </div>
@@ -87,7 +87,7 @@ export const ListItem: React.FC<ListItemProps> = ({ item }) => {
             ></Video>
             <div
               ref={wrapperRef}
-              className='media-image'
+              className="media-image"
               style={{
                 backgroundImage: `url(${item.background_image.replace(
                   'media/',
@@ -99,15 +99,15 @@ export const ListItem: React.FC<ListItemProps> = ({ item }) => {
         </div>
       </div>
 
-      <div className='description-content'>
-        <div className='content-platforms'>{getPlatformsJSX(item)}</div>
-        <div className='content-title'>
+      <div className="description-content">
+        <div className="content-platforms">{getPlatformsJSX(item)}</div>
+        <div className="content-title">
           <h1>{item.name}</h1>
         </div>
 
-        <div className='buttons-container'>
-          <button className='shallow-button'>
-            <span className='plus-icon'>
+        <div className="buttons-container">
+          <button className="shallow-button">
+            <span className="plus-icon">
               <PlusSVG width={10} />
             </span>
             <span>{item.suggestions_count}</span>
