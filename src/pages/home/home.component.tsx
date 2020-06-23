@@ -1,10 +1,15 @@
-import React from 'react';
-import { HomePageWrapper } from './home.styles';
+import React, { Fragment } from 'react';
+import { Header } from '../../components/header/header.component';
 import { PageContent } from '../../components/page-content/page-content.component';
+import './home.styles.scss';
+
 export const HomePage: React.FC<{}> = () => {
   return (
-    <HomePageWrapper>
-      <PageContent />
-    </HomePageWrapper>
+    <Fragment>
+      <Header />
+      <div className="page__wrapper withSidebar">
+        <PageContent />
+      </div>
+    </Fragment>
   );
 };
