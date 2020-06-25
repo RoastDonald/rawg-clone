@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   GamesResponse,
   Game,
@@ -74,7 +75,9 @@ export const GameOverview: React.FC<GameOverviewProps> = (props) => {
                     {elem.platforms ? getPlatformsJSX(elem) : null}
                   </div>
                 </div>
-                <div className={styles.gameName}>{elem.name}</div>
+                <div className={styles.gameName}>
+                  <Link to={`/games/${elem.slug}`}>{elem.name}</Link>
+                </div>
               </div>
             </div>
           );

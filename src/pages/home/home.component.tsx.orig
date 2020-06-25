@@ -1,9 +1,15 @@
 import React, { Fragment } from 'react';
 import { Header } from '../../components/header/header.component';
 import { PageContent } from '../../components/page-content/page-content.component';
+<<<<<<< HEAD
+
+
+export const HomePage: React.FC<{}> = () => {
+=======
 import './home.styles.scss';
 
 const HomePage: React.FC<{}> = () => {
+>>>>>>> game_page
   return (
     <Fragment>
       <Header />

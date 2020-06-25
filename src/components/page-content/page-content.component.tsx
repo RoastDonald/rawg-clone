@@ -5,7 +5,7 @@ import './page-content.styles.scss';
 
 export const PageContent = () => {
   return (
-    <div className='page-content'>
+    <div className="page-content ">
       <Sidebar />
       <DiscoverContent />
     </div>

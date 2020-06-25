@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
-import { HomePage } from './pages/home/home.component';
+import React from 'react';
+import routes from './app-routes';
 import { Switch, Route } from 'react-router-dom';
-import { Header } from './components/header/header.component';
 
-export const App: React.FC<{}> = () => {
-  return (
-    <React.Fragment>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        {/* <Route exact path="/login" component={LoginPage}/> */}
-        {/* <Route exact path="/signup" component={SignUpPage}/> */}
-      </Switch>
-    </React.Fragment>
-  );
-};
+const App: React.FC<{}> = () => (
+  <React.Fragment>
+    <Switch>
+      {Object.values(routes).map(({ Component, path }, key) => (
+        <Route exact path={path} key={key} component={Component} />
+      ))}
+    </Switch>
+  </React.Fragment>
+);
+
+export default App;
