@@ -103,13 +103,9 @@ export const ListItem: React.FC<ListItemProps> = ({ item }) => {
       <div className="description-content">
         <div className="content-platforms">{getPlatformsJSX(item)}</div>
         <div className="content-title">
-<<<<<<< HEAD
-          <h1>{item.name}</h1>
-=======
           <Link to={`/games/${item.slug}`}>
             <h1>{item.name}</h1>
           </Link>
->>>>>>> game_page
         </div>
 
         <div className="buttons-container">
