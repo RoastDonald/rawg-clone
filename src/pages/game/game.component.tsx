@@ -2,37 +2,43 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Header } from '../../components/header/header.component';
 import { Sidebar } from '../../components/sidebar/sidebar.component';
 import { useParams } from 'react-router-dom';
+
+import PageArt from '../../components/page-art/page-art.component';
+
+import axios from 'axios';
 import './game.styles.scss';
+import BreadCrumbs from '../../components/breadcrumbs/breadcrumbs.component';
+
+interface i {
+  background_image: string;
+}
 
 const GamePage: React.FC<{}> = () => {
-  const [gameInfo,setGameInfo] = useState({});
-  useEffect(async()=>{
-
-  },slug);
   let { slug } = useParams();
+  const [gameInfo, setGameInfo] = useState({
+    background_image: '',
+  });
+
+  useEffect(() => {
+    const fetchGameInfo = async () => {
+      const res = await axios.get(`https://rawg.io/api/games/${slug}`);
+      setGameInfo(res.data);
+    };
+    fetchGameInfo();
+  }, slug);
 
   return (
     <Fragment>
       <Header />
       <div className="page__wrapper withSidebar">
         <Sidebar />
-        <div className="content">content</div>
+        <main className="page__content">
+          <div className="content__wrapper">
+            <BreadCrumbs />
+          </div>
+        </main>
       </div>
-      <div className="page__art">
-        <div
-          className="art-wrapper"
-          style={{
-            height: '600px',
-            backgroundColor: 'transparent',
-            backgroundImage:
-              ' linear-gradient(rgba(15, 15, 15, 0), rgb(21, 21, 21)),' +
-              ' linear-gradient(rgba(21, 21, 21, 0.8), rgba(21, 21, 21, 0.5)),' +
-              ` url(https://media.rawg.io/media/resize/1280/-/games/${slug.})`,
-          }}
-        >
-          da
-        </div>
-      </div>
+      <PageArt backgroundImageURL={gameInfo.background_image} />
     </Fragment>
   );
 };

@@ -3,7 +3,7 @@ import { Header } from '../../components/header/header.component';
 import { PageContent } from '../../components/page-content/page-content.component';
 import './home.styles.scss';
 
-export const HomePage: React.FC<{}> = () => {
+const HomePage: React.FC<{}> = () => {
   return (
     <Fragment>
       <Header />
@@ -13,3 +13,5 @@ export const HomePage: React.FC<{}> = () => {
     </Fragment>
   );
 };
+
+export default HomePage;
