@@ -17,7 +17,7 @@ export class Header extends React.Component<{}, HeaderState> {
 
     this.state = {
       searchField: '',
-      isReady: false
+      isReady: false,
     };
     this.onChangeDelay = debounce(this.onChangeDelay, 600);
   }
@@ -33,7 +33,7 @@ export class Header extends React.Component<{}, HeaderState> {
   handleInputSearch = (e: React.FormEvent<HTMLInputElement>) => {
     this.setState({
       searchField: e.currentTarget.value,
-      isReady: false
+      isReady: false,
     });
     this.onChangeDelay(e);
   };
@@ -44,7 +44,7 @@ export class Header extends React.Component<{}, HeaderState> {
       <div className={headerWrapper}>
         <div className={item}>
           <div className={logo}>
-            <Link to='/' className={logo}>
+            <Link to="/" className={logo}>
               rawg
             </Link>
           </div>
@@ -60,15 +60,15 @@ export class Header extends React.Component<{}, HeaderState> {
             onBlur={this.handleBlur}
             onChange={this.handleInputSearch}
             value={searchField}
-            type='search'
+            type="search"
             className={search}
             placeholder={'search 313,231 games'}
           />
         </div>
 
         <div className={item}>
-          <a href='#'>log in</a>
-          <a href='#'>sign up</a>
+          <a href="#">log in</a>
+          <a href="#">sign up</a>
         </div>
         {searchField && isReady ? (
           <SearchResult
