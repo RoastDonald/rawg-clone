@@ -4,7 +4,7 @@ import { SearchResult } from '../search-results/search-results.component';
 import { Link } from 'react-router-dom';
 import './header.styles.scss';
 
-export const Header: React.FC<{}> = () => {
+const Header: React.FC<{}> = () => {
   const [searchField, setSearchField] = useState('');
   const [isReady, setReady] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -72,3 +72,5 @@ export const Header: React.FC<{}> = () => {
     </header>
   );
 };
+
+export default Header;
