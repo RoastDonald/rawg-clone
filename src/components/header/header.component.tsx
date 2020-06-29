@@ -1,82 +1,74 @@
-import React, { createRef } from 'react';
+import React, { useRef, useState } from 'react';
 import debounce from 'lodash.debounce';
 import { SearchResult } from '../search-results/search-results.component';
-import styles from './header.module.scss';
 import { Link } from 'react-router-dom';
-const { headerWrapper, search, logo, item, rateButton } = styles;
+import './header.styles.scss';
 
-interface HeaderState {
-  searchField: string;
-  isReady: boolean;
-}
+export const Header: React.FC<{}> = () => {
+  const [searchField, setSearchField] = useState('');
+  const [isReady, setReady] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
-export class Header extends React.Component<{}, HeaderState> {
-  searchInputRef = createRef<HTMLInputElement>();
-  constructor(props: {}) {
-    super(props);
+  const onChangeDelay = debounce((e: React.FormEvent<HTMLInputElement>) => {
+    setReady(true);
+  }, 600);
 
-    this.state = {
-      searchField: '',
-      isReady: false,
-    };
-    this.onChangeDelay = debounce(this.onChangeDelay, 600);
-  }
-
-  handleBlur = () => {
-    this.setState({ isReady: false });
+  const handleBlur = () => {
+    setReady(false);
   };
 
-  onChangeDelay = (e: React.FormEvent<HTMLInputElement>) => {
-    this.setState({ isReady: true });
+  const handleInputSearch = (e: React.FormEvent<HTMLInputElement>) => {
+    setSearchField(e.currentTarget.value);
+    setReady(false);
+    onChangeDelay(e);
   };
 
-  handleInputSearch = (e: React.FormEvent<HTMLInputElement>) => {
-    this.setState({
-      searchField: e.currentTarget.value,
-      isReady: false,
-    });
-    this.onChangeDelay(e);
+  const renderedSearchResult = () => {
+    if (searchField && isReady) {
+      return (
+        <SearchResult
+          searchInputRef={searchInputRef}
+          searchText={searchField}
+        />
+      );
+    } else return null;
   };
 
-  render() {
-    const { searchField, isReady } = this.state;
-    return (
-      <div className={headerWrapper}>
-        <div className={item}>
-          <div className={logo}>
-            <Link to="/" className={logo}>
-              rawg
-            </Link>
-          </div>
+  return (
+    <header className="header">
+      <div className="header__wrapper">
+        <div className="header__item">
+          <Link to="/" className="header__logo">
+            rawg
+          </Link>
         </div>
 
-        <div className={item}>
-          <button className={rateButton}>Rate game</button>
+        <div className="header__item">
+          <button className="btn btn--primary">Rate game</button>
         </div>
 
-        <div className={item}>
+        <div className="header__item header__item-search">
           <input
-            ref={this.searchInputRef}
-            onBlur={this.handleBlur}
-            onChange={this.handleInputSearch}
+            ref={searchInputRef}
+            onBlur={handleBlur}
+            onChange={handleInputSearch}
             value={searchField}
             type="search"
-            className={search}
+            className="search-inp"
             placeholder={'search 313,231 games'}
           />
         </div>
 
-        <div className={item}>
-          <a href="#">log in</a>
-          <a href="#">sign up</a>
+        <div className="header__item ">
+          <a href="#" className="header__item-link">
+            log in
+          </a>
+          <a href="#" className="header__item-link">
+            sign up
+          </a>
         </div>
-        {searchField && isReady ? (
-          <SearchResult
-            searchInputRef={this.searchInputRef}
-            searchText={searchField}
-          />
-        ) : null}
+        {renderedSearchResult()}
       </div>
-    );
-  }
-}
+    </header>
+  );
+};

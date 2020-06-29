@@ -1,4 +1,6 @@
 import React from 'react';
+
+
 import { Browse } from './sidebar-components/browse.component';
 import { Geners } from './sidebar-components/genres.component';
 import { Home } from './sidebar-components/home.component';

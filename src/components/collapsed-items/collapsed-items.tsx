@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { ArrowDown } from './collapsed-items.styles';
+
+
 interface CollapsedItemsProps {
   count: number;
 }
-
 interface ToggleButtonProps {
   text?: string;
   rotation?: number;
