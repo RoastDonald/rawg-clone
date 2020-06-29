@@ -1,10 +1,19 @@
+<<<<<<< HEAD
 import React, { Fragment, useEffect, useState } from 'react';
+=======
+import React, { Fragment, useEffect, useState, DependencyList } from 'react';
+>>>>>>> game_page
 
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
+<<<<<<< HEAD
 import Header from '../../components/header/header.component';
 import Sidebar from '../../components/sidebar/sidebar.component';
+=======
+import { Header } from '../../components/header/header.component';
+import { Sidebar } from '../../components/sidebar/sidebar.component';
+>>>>>>> game_page
 import PageArt from '../../components/page-art/page-art.component';
 import BreadCrumbs from '../../components/breadcrumbs/breadcrumbs.component';
 
@@ -20,7 +29,11 @@ interface IGameParams {
 
 const GamePage: React.FC<{}> = () => {
   let { slug } = useParams<IGameParams>();
+<<<<<<< HEAD
   const [gameInfo, setGameInfo] = useState<GameResponse>({
+=======
+  const [gameInfo, setGameInfo] = useState({
+>>>>>>> game_page
     background_image: '',
   });
 

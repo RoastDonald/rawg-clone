@@ -1,5 +1,5 @@
-import React from 'react';
-import routes from './app-routes';
+import React, { Component } from 'react';
+import routes, { IRoute } from './app-routes';
 import { Switch, Route } from 'react-router-dom';
 
 const App: React.FC<{}> = () => (
