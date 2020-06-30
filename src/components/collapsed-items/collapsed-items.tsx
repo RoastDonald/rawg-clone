@@ -16,10 +16,10 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
   rotation = 90,
 }) => {
   return (
-    <li>
-      <div className="sidebar__link show-more" onClick={handleClick}>
-        <span className="list__icon">
-          <ArrowDown rotate={rotation} />
+    <li className="list__item" key={'collapsed'}>
+      <div className="show-more" onClick={handleClick}>
+        <span className="list__icon-wrapper">
+          <ArrowDown rotate={rotation} className="list__icon" />
         </span>
         <span>{text}</span>
       </div>
@@ -27,10 +27,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
   );
 };
 
-export const CollapsedItems: React.FC<CollapsedItemsProps> = ({
-  children,
-  count,
-}) => {
+const CollapsedItems: React.FC<CollapsedItemsProps> = ({ children, count }) => {
   const [isShown, triggerToggle] = useState(false);
 
   const childrenArray = React.Children.toArray(children);
@@ -62,3 +59,4 @@ export const CollapsedItems: React.FC<CollapsedItemsProps> = ({
     return <React.Fragment>{children}</React.Fragment>;
   }
 };
+export default CollapsedItems;
