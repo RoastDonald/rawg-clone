@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowDown } from './collapsed-items.styles';
 
-
 interface CollapsedItemsProps {
   count: number;
 }
@@ -18,8 +17,8 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
 }) => {
   return (
     <li>
-      <div className='sidebar__link show-more' onClick={handleClick}>
-        <span className='list__icon'>
+      <div className="sidebar__link show-more" onClick={handleClick}>
+        <span className="list__icon">
           <ArrowDown rotate={rotation} />
         </span>
         <span>{text}</span>
@@ -32,29 +31,29 @@ export const CollapsedItems: React.FC<CollapsedItemsProps> = ({
   children,
   count,
 }) => {
-  const [isShowed, triggerToggle] = useState(false);
+  const [isShown, triggerToggle] = useState(false);
 
   const childrenArray = React.Children.toArray(children);
   let fixedArray = [];
   let len = childrenArray.length;
   if (len > count) {
     fixedArray = childrenArray.slice(0, count);
-    return !isShowed ? (
+    return !isShown ? (
       <React.Fragment>
         {fixedArray.map((item) => {
           return item;
         })}
         <ToggleButton
-          text='Show all'
-          handleClick={() => triggerToggle(!isShowed)}
+          text="Show all"
+          handleClick={() => triggerToggle(!isShown)}
         />
       </React.Fragment>
     ) : (
       <React.Fragment>
         {children}
         <ToggleButton
-          text='Hide'
-          handleClick={() => triggerToggle(!isShowed)}
+          text="Hide"
+          handleClick={() => triggerToggle(!isShown)}
           rotation={270}
         />
       </React.Fragment>

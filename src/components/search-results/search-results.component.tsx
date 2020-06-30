@@ -16,7 +16,7 @@ interface SearchResultState extends SearchResultsResponse {
   isFetching: boolean;
 }
 
-export class SearchResult extends React.Component<
+class SearchResult extends React.Component<
   SearchResultsProps,
   SearchResultState
 > {
@@ -25,7 +25,7 @@ export class SearchResult extends React.Component<
     games: null,
     collections: null,
     creators: null,
-    isFetching: false
+    isFetching: false,
   };
 
   async componentDidMount() {
@@ -36,7 +36,7 @@ export class SearchResult extends React.Component<
         SearchAPI.getUsers(searchText),
         SearchAPI.getGames(searchText),
         SearchAPI.getCollections(searchText),
-        SearchAPI.getCreators(searchText)
+        SearchAPI.getCreators(searchText),
       ]);
       this.setState({ users, games, collections, creators, isFetching: false });
     } catch {
@@ -51,7 +51,7 @@ export class SearchResult extends React.Component<
       <DropdownContainer
         style={{
           width: `${searchInputRef?.current?.offsetWidth}px`,
-          marginLeft: `${searchInputRef?.current?.offsetLeft}px`
+          marginLeft: `${searchInputRef?.current?.offsetLeft}px`,
         }}
       >
         <DropdownContentWithLoad
@@ -65,3 +65,5 @@ export class SearchResult extends React.Component<
     );
   }
 }
+
+export default SearchResult;

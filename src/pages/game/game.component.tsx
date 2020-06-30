@@ -9,16 +9,17 @@ import BreadCrumbs from '../../components/breadcrumbs/breadcrumbs.component';
 
 import './game.styles.scss';
 
+//TODO
 interface GameResponse {
   background_image: string;
 }
 
-interface IGameParams {
+interface IGamePageParams {
   slug: string;
 }
 
 const GamePage: React.FC<{}> = () => {
-  let { slug } = useParams<IGameParams>();
+  let { slug } = useParams<IGamePageParams>();
   const [gameInfo, setGameInfo] = useState<GameResponse>({
     background_image: '',
   });
