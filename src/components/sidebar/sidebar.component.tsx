@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import CollapsedItems from '../collapsed-items/collapsed-items';
-import sprite from '../../assets/sidebar-sprite.svg';
-import { Icons } from './icons';
+import sprite from '../../assets/sprite.svg';
+import { Icons } from '../../assets/icons';
 import './sidebar.styles.scss';
 
 type iconTypes = keyof typeof Icons;

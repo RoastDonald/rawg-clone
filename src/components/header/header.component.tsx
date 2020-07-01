@@ -45,7 +45,7 @@ const Header: React.FC<{}> = () => {
         </div>
 
         <div className="header__rate">
-          <button className="header__button">Rate game</button>
+          <button className="header__button">Rate top games</button>
         </div>
 
         <div className="header__search-box">

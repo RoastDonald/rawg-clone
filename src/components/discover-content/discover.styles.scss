@@ -1,12 +1,81 @@
-.discover {
-  width: 100%;
-}
+$optionColor: darken(
+  $color: #fff,
+  $amount: 50%,
+);
 
-.page__content {
+.discover {
   display: flex;
   flex-direction: column;
-  max-width: 1920px;
   width: 100%;
+
+  &__grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    align-items: flex-start;
+    grid-gap: 2.4rem;
+  }
+
+  &__settings {
+    margin-top: 12px;
+    width: 100%;
+    margin-bottom: 24px;
+    display: flex;
+  }
+
+  &__ordering {
+    flex: 1 1 45%;
+  }
+
+  &__display-options {
+    flex: 1 1 55%;
+    font-size: 1.4rem;
+  }
+}
+
+.options {
+  color: darken($color: #fff, $amount: 50%);
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+
+  &__title {
+    font-weight: 600;
+  }
+
+  &__wrapper {
+    margin-left: 6px;
+    display: flex;
+  }
+
+  &__display-option {
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.5;
+    border-radius: 6px;
+    margin-left: 6px;
+    width: 48px;
+    height: 48px;
+    background-color: darken($color: $optionColor, $amount: 30%);
+  }
+}
+
+.button__image {
+  margin: 0.3rem 1rem;
+  transform: rotate(90deg);
+  width: 7px;
+  height: 13px;
+  opacity: 0.3;
+}
+
+.button__option {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.buttons-group {
+  display: flex;
 }
 
 .heading {
@@ -15,16 +84,4 @@
 .subtitle {
   margin: 6px 0px 0px;
   font-size: 16px;
-}
-
-.discover-game-list {
-  margin-top: 12px;
-}
-
-.games-grid {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  align-items: flex-start;
-  grid-gap: 24px;
 }

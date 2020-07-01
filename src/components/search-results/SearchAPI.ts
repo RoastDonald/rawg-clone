@@ -4,7 +4,7 @@ import {
   GamesResponse,
   CollectionResponse,
   CreatorResponse
-} from './search-interfaces';
+} from '../../API_Interfaces/search-interfaces';
 
 enum Queries {
   USERS = 'https://rawg.io/api/users?page_size=20&search=',

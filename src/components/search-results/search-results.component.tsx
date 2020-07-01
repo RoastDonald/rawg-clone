@@ -1,5 +1,5 @@
 import React, { RefObject } from 'react';
-import { SearchResultsResponse } from './search-interfaces';
+import { SearchResultsResponse } from '../../API_Interfaces/search-interfaces';
 import { withSpinner } from '../withSpinner/withSpinner.component';
 import { DropdownContent } from '../dropdown-content/dropdown-content.component';
 import { DropdownContainer } from './search-results';
