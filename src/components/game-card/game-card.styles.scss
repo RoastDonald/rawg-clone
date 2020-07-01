@@ -1,4 +1,9 @@
+.game-card-wrapper {
+  // position: absolute;
+}
+
 .game-card {
+  position: relative;
   overflow: hidden;
   width: 100%;
   height: 100%;
@@ -24,6 +29,7 @@
     display: flex;
     flex-direction: column;
     padding: 16px 16px 24px;
+    position: relative;
   }
 
   &__meta {
@@ -31,6 +37,15 @@
   }
 
   &__buttons {
+    display: flex;
+    align-items: center;
+  }
+
+  &__about {
+    overflow: visible;
+    z-index: 5;
+    position: absolute;
+    top: 100%;
   }
 }
 
@@ -41,26 +56,43 @@
   opacity: 0;
 }
 
+.game-card:hover .game-card-button {
+  opacity: 1;
+}
+
 .game-card-button {
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   outline: none;
   font-size: 12px;
   min-height: 24px;
   display: flex;
   min-width: 40px;
-  color: #fff;
+  color: inherit;
   border-radius: 4px;
   border: none;
   padding: 0 8px;
   background-color: hsla(0, 0%, 100%, 0.1);
 
   &__icon {
+    fill: #fff;
     width: 1.4rem;
     height: 1.4rem;
   }
 
   &__title {
-    // color: #fff;
+    margin-left: 0.5rem;
+  }
+
+  &:not(:last-child) {
+    margin-right: 0.5rem;
+  }
+
+  &:not(:first-child) {
+    opacity: 0;
   }
 }
 
@@ -117,16 +149,24 @@
 .play-button {
   cursor: pointer;
   color: #fff;
-  margin-top: 3px;
-  margin-right: 3px;
+  display: flex;
+  padding: 3px;
+  align-items: center;
   background-color: transparent;
   outline: none;
   border: none;
+
+  & > * {
+    display: block;
+  }
+
   &__title {
     font-size: 1.2rem;
   }
 
   &__icon {
+    fill: #fff;
+    margin-right: 0.5rem;
     width: 1.4rem;
     height: 1.4rem;
   }
@@ -138,170 +178,3 @@
   height: 0;
   padding-bottom: 56.25%;
 }
-
-// .play-button {
-//   // margin-top: 3px;
-//   // margin-right: 3px;
-//   // cursor: pointer;
-//   // display: flex;
-//   // border-radius: 5px;
-//   // justify-content: space-around;
-//   // align-items: center;
-//   // background-color: #151515;
-//   // opacity: 0.7;
-//   // padding: 2px 4px;
-//   // z-index: 1;
-//   // position: absolute;
-//   // right: 7px;
-//   // bottom: 7px;
-// }
-
-// .media__icon {
-//   width: 2rem;
-//   height: 2rem;
-//   fill: #fff;
-//   transition: fill 0.3s ease;
-// }
-
-// .game-item {
-//   width: 100%;
-//   height: 100%;
-//   border-radius: 16px;
-//   min-height: 200px;
-//   transition: transform 0.3s ease;
-//   background-color: lighten($color: #151515, $amount: 5%);
-//   &:hover {
-//     transform: scale(1.05);
-//   }
-//   &:hover .media-image::after {
-//     opacity: 0;
-//   }
-// }
-
-// video {
-//   object-fit: cover;
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-// }
-
-// .media-content {
-//   border-top-left-radius: 16px;
-//   border-top-right-radius: 16px;
-//   width: 100%;
-//   overflow: hidden;
-// }
-
-// .media-content-video {
-//   z-index: 1;
-//   align-items: center;
-//   display: flex;
-//   justify-content: center;
-//   height: 0;
-//   padding-bottom: 56.25%;
-//   position: relative;
-// }
-// .media-image {
-//   transition: opacity 0.3s linear;
-//   z-index: 1;
-//   position: absolute;
-//   background-position: 50%;
-//   background-size: cover;
-//   background-repeat: no-repeat;
-//   width: 100%;
-//   height: 100%;
-//   top: 0;
-//   left: 0;
-
-//   &::after {
-//     transition: opacity 0.3s ease;
-//     content: '';
-//     background-size: contain;
-//     background-position: 50%;
-//     position: absolute;
-//     background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMTI4JyBoZWlnaHQ9JzEyOCcgdmlld0JveD0nMCAwIDEyOCAxMjgnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PGcgZmlsbD0nbm9uZScgZmlsbC1ydWxlPSdldmVub2RkJz48Y2lyY2xlIGZpbGw9JyMxNTE1MTUnIG9wYWNpdHk9Jy42JyBjeD0nNjQnIGN5PSc2NCcgcj0nNjQnLz48cGF0aCBkPSdNODYuNzg0IDYwLjZMNTQuNTgyIDQwLjQ3M2MtLjk1Mi0uNTYyLTIuMTM0LS40NjgtMy4wMjctLjQ2OC0zLjU3IDAtMy41NTUgMi43MzUtMy41NTUgMy40Mjh2NDEuMTMyYzAgLjU4Ni0uMDE2IDMuNDI4IDMuNTU1IDMuNDI4Ljg5MyAwIDIuMDc1LjA5MyAzLjAyNy0uNDY5TDg2Ljc4MyA2Ny40YzIuNjQ0LTEuNTYgMi4xODctMy40IDIuMTg3LTMuNHMuNDU3LTEuODQxLTIuMTg2LTMuNHonIGZpbGw9JyNGRkYnIGZpbGwtcnVsZT0nbm9uemVybycvPjwvZz48L3N2Zz4=);
-//     display: block;
-//     width: 44px;
-//     height: 44px;
-//     left: 16px;
-//     bottom: 16px;
-//   }
-// }
-
-// .description-content {
-//   display: flex;
-
-//   flex-direction: column;
-//   padding: 16px 16px 24px;
-// }
-// .content-platforms {
-//   display: flex;
-// }
-
-// .content-platforms,
-// .content-title {
-//   margin-bottom: 5px;
-// }
-
-// .content-title {
-//   font-size: 24px;
-// }
-
-// .shallow-button {
-//   cursor: pointer;
-//   outline: none;
-//   font-size: 12px;
-//   min-height: 24px;
-//   display: flex;
-//   min-width: 40px;
-//   color: #fff;
-//   border-radius: 4px;
-//   border: none;
-//   padding: 0 8px;
-//   background-color: hsla(0, 0%, 100%, 0.1);
-// }
-
-// .plus-icon {
-//   margin-right: 5px;
-// }
-
-// // .media-video {
-// //   object-fit: cover;
-// //   position: absolute;
-// //   top: 0;
-// //   left: 0;
-// //   width: 100%;
-// //   height: 100%;
-// // }
-
-// .play-container {
-//   cursor: pointer;
-//   display: flex;
-//   border-radius: 5px;
-//   justify-content: space-around;
-//   align-items: center;
-//   background-color: #151515;
-//   opacity: 0.7;
-//   padding: 2px 4px;
-//   z-index: 1;
-//   position: absolute;
-//   right: 7px;
-//   bottom: 7px;
-// }
-// // .play-button {
-// // margin-top: 3px;
-// // margin-right: 3px;
-// // }
-
-// .play-title {
-//   font-size: 12px;
-// }
-
-// .load-more {
-//   width: 100%;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }

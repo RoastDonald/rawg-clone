@@ -3,15 +3,10 @@ import axios, { AxiosResponse } from 'axios';
 import { GamesResponse, Game } from '../../API_Interfaces/search-interfaces';
 import { GameCard } from '../game-card/game-card.component';
 import { withSpinner } from '../withSpinner/withSpinner.component';
-
+import './content-panel.styles.scss';
 const gamesLink =
   'https://rawg.io/api/games/lists/main?discover=true&ordering=-relevance&page_size=40&page=1';
 
-
-
-
-
-  
 interface ListProps {
   games: Array<Game> | null;
 }
@@ -50,9 +45,9 @@ const List: React.FC<ListProps> = ({ games }) => (
         })
       : null}
 
-    <button className="load-more">
+    {/* <button className="load-more">
       <span>Load more</span>
-    </button>
+    </button> */}
   </React.Fragment>
 );
 

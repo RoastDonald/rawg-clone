@@ -25,6 +25,9 @@
 }
 
 .list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   list-style: none;
   font-size: 1.6rem;
   &__icon {

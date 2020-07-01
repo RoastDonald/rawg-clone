@@ -50,12 +50,12 @@ export const FilterButton: React.FC<FilterButtonProps> = (props) => {
             {props.children}
             {toggle && (
               <Portal top={top} left={left} width={width}>
-                <ul>
-                  <li>test</li>
-                  <li>test</li>
-                  <li>test</li>
-                  <li>test</li>
-                  <li>test</li>
+                <ul className="list">
+                  <li className="list__item">test</li>
+                  <li className="list__item">test</li>
+                  <li className="list__item">test</li>
+                  <li className="list__item">test</li>
+                  <li className="list__item">test</li>
                 </ul>
               </Portal>
             )}

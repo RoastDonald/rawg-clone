@@ -1,7 +1,8 @@
 .page {
+  max-width: 192rem;
+  margin: 0 auto;
   &__wrapper {
     width: 100%;
-    display: flex;
   }
 
   &__header {
