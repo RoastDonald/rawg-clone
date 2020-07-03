@@ -12,6 +12,7 @@ interface ListItemProps {
 export const GameCard: React.FC<ListItemProps> = ({ item }) => {
   const videoRef = createRef<HTMLVideoElement>();
   const wrapperRef = createRef<HTMLDivElement>();
+  const playButtonRef = createRef<HTMLDivElement>();
 
   const [src, setSrc] = useState('');
   const [isLoading, setLoad] = useState(false);
@@ -57,32 +58,39 @@ export const GameCard: React.FC<ListItemProps> = ({ item }) => {
         setHover(false);
         let video = videoRef.current;
         let wrapper = wrapperRef.current;
+        let playButton = playButtonRef.current;
         setLoad(false);
         setSrc('');
         video?.pause();
 
-        if (wrapper && video?.currentTime) {
+        if (playButton && wrapper && video?.currentTime) {
           wrapper.style.opacity = '1';
           video.currentTime = 0;
+          playButton.style.zIndex = '-1';
         }
       }}
     >
       <div className="game-card-wrapper">
         <div className="game-card__media-content">
           <div className="preview media-content-wrapper">
-            <div className="preview__play-button-container">
-              <div className="play-button">
-                <svg className="play-button__icon">
-                  <use href={sprite + '#icon-play'}></use>
-                </svg>
-                <span className="play-button__title">Play full video</span>
+            {item.clip ? (
+              <div
+                ref={playButtonRef}
+                className="preview__play-button-container"
+              >
+                <div className="play-button">
+                  <svg className="play-button__icon">
+                    <use href={sprite + '#icon-play'} />
+                  </svg>
+                  <span className="play-button__title">Play full video</span>
+                </div>
               </div>
-            </div>
+            ) : null}
             {isLoading ? (
               <div className="preview__loader loader-wrapper">
                 <div className="lds-ripple">
-                  <div></div>
-                  <div></div>
+                  <div />
+                  <div />
                 </div>
               </div>
             ) : null}
@@ -93,18 +101,19 @@ export const GameCard: React.FC<ListItemProps> = ({ item }) => {
                 }
               }}
               onCanPlay={() => {
-                if (wrapperRef.current) {
+                if (wrapperRef.current && playButtonRef.current) {
                   wrapperRef.current.style.opacity = '0';
+                  playButtonRef.current.style.zIndex = '2';
                 }
                 setLoad(false);
               }}
               ref={videoRef}
               src={src}
-              playsInline
-              muted
-              loop
+              playsInline={true}
+              muted={true}
+              loop={true}
               className="preview__video"
-            ></video>
+            />
             <div
               ref={wrapperRef}
               className="preview__image"
@@ -129,7 +138,7 @@ export const GameCard: React.FC<ListItemProps> = ({ item }) => {
           <div className="game-card__buttons">
             <button className="game-card-button">
               <svg className="game-card-button__icon">
-                <use href={sprite + '#icon-plus'}></use>
+                <use href={sprite + '#icon-plus'} />
               </svg>
               <span className="game-card-button__title">
                 {item.suggestions_count}
@@ -137,13 +146,13 @@ export const GameCard: React.FC<ListItemProps> = ({ item }) => {
             </button>
             <button className="game-card-button">
               <svg className="game-card-button__icon">
-                <use href={sprite + '#icon-present'}></use>
+                <use href={sprite + '#icon-present'} />
               </svg>
             </button>
 
             <button className="game-card-button">
               <svg className="game-card-button__icon">
-                <use href={sprite + '#icon-dotes'}></use>
+                <use href={sprite + '#icon-dotes'} />
               </svg>
             </button>
           </div>

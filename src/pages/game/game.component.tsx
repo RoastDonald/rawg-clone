@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import Header from '../../components/header/header.component';
-import Sidebar from '../../components/sidebar/sidebar.component';
+import Sidebar from '../../components/sidebar/sidebar.container';
 import PageArt from '../../components/page-art/page-art.component';
 import BreadCrumbs from '../../components/breadcrumbs/breadcrumbs.component';
 

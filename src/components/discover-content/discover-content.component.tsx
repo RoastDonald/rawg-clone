@@ -13,7 +13,10 @@ export const DiscoverContent: React.FC<{}> = () => (
     <div className="discover__settings">
       <SettingsPanel />
     </div>
-    <div className="discover__grid ">
+    <div
+      className="discover__grid "
+      style={{ gridTemplateColumns: `repeat(${3}, minmax(25rem, 1fr))` }}
+    >
       <ContentPanel />
     </div>
   </main>
@@ -23,16 +26,8 @@ const SettingsPanel: React.FC<{}> = () => (
   <Fragment>
     <div className="discover__ordering">
       <div className="buttons-group">
-        <FilterButton>
-          <span className="button__title">Ordered by: </span>
-          <span className="button__option">default</span>
-          <img className="button__image" src={Icons.ARROW} alt="arrow" />
-        </FilterButton>
-
-        <FilterButton>
-          <span className="button__title">Platforms</span>
-          <img className="button__image" src={Icons.ARROW} alt="arrow" />
-        </FilterButton>
+        <FilterButton type="Relevance" />
+        <FilterButton type="Platforms" />
       </div>
     </div>
 

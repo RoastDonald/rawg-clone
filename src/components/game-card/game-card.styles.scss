@@ -79,8 +79,8 @@
 
   &__icon {
     fill: #fff;
-    width: 1.4rem;
-    height: 1.4rem;
+    width: 1.6rem;
+    height: 1.6rem;
   }
 
   &__title {
@@ -96,8 +96,19 @@
   }
 }
 
+.game-card-button:hover {
+  background-color: #fff;
+  color: #000;
+}
+.game-card-button:hover .game-card-button__icon {
+  fill: #000;
+}
+
 .preview {
+  position: relative;
   &__video {
+    width: 100%;
+    height: auto;
   }
 
   &__image {
@@ -128,10 +139,14 @@
   }
 
   &__loader {
+    .lds-ripple {
+    }
   }
 
   &__play-button-container {
+    border: 0.5px solid #000;
     cursor: pointer;
+    transition: all 0.3s;
     display: flex;
     border-radius: 5px;
     justify-content: space-around;
@@ -139,10 +154,14 @@
     background-color: #151515;
     opacity: 0.7;
     padding: 2px 4px;
-    z-index: 1;
+    z-index: -1;
     position: absolute;
     right: 7px;
     bottom: 7px;
+  }
+
+  &__play-button-container:hover {
+    border-color: #fff;
   }
 }
 

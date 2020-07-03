@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Header from '../../components/header/header.component';
-import Sidebar from '../../components/sidebar/sidebar.component';
+import Sidebar from '../../components/sidebar/sidebar.container';
 import DiscoverContent from '../../components/discover-content/discover-content.component';
 import './home.styles.scss';
 

@@ -1,12 +1,7 @@
-import {createStore,applyMiddleware,combineReducers} from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import rootReducer from './root-reducer';
 import logger from 'redux-logger';
 
+const middlewares = [logger];
 
-interface IStore {
-  
-}
-
-
-const store  createStore(combineReducers({
-
-}))
+export const store = createStore(rootReducer, applyMiddleware(...middlewares));
