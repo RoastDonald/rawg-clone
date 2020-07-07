@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './creator-overview.module.scss';
-import { CreatorResponse } from '../../../API_Interfaces/search-interfaces';
 
-interface CreatorOverviewProps {
-  creators: CreatorResponse | null;
-}
+type CreatorOverviewProps = {
+  creators:
+    | import('../../../API_Interfaces/search-interfaces').CreatorResponse
+    | null;
+};
 
 const getColor = () => {
   let H = Math.floor(Math.random() * 240);

@@ -1,7 +1,7 @@
 @import '../../layouts/vars.scss';
 
 .searchResults {
-  z-index: 1000;
+  z-index: 10000;
   display: flex;
   position: absolute;
   width: 300px;

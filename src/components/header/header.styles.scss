@@ -98,6 +98,10 @@ $dot-size: 0.4rem;
     align-items: center;
   }
 
+  &__link:not(:first-child) {
+    margin-left: 5px;
+  }
+
   &__dotted-container {
     margin-right: -3rem;
     position: relative;
@@ -135,5 +139,9 @@ $dot-size: 0.4rem;
   }
   &__dotted::after {
     right: 1rem;
+  }
+
+  &__link {
+    white-space: nowrap;
   }
 }

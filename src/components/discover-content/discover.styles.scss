@@ -6,13 +6,10 @@ $optionColor: darken(
 .discover {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 82%;
 
-  &__grid {
+  @media only screen and (max-width: 1200px) {
     width: 100%;
-    display: grid;
-    align-items: flex-start;
-    grid-gap: 2.4rem;
   }
 
   &__settings {
@@ -61,15 +58,16 @@ $optionColor: darken(
 }
 
 .button__image {
+  fill: grey;
   margin: 0.3rem 1rem;
+  width: 14px;
+  height: 14px;
   transform: rotate(90deg);
-  width: 7px;
-  height: 13px;
-  opacity: 0.3;
 }
 
 .button__option {
-  font-size: 1.6rem;
+  margin-left: 0.3rem;
+  font-size: 1.4rem;
   font-weight: 600;
 }
 

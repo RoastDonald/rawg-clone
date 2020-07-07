@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import { sidebarReducer, SidebarReducerType } from './sidebar/sidebar.reducer';
-
-export interface IStore {
-  sidebar: SidebarReducerType;
-}
-
-export default combineReducers({
-  siderbar: sidebarReducer,
+import { gameReducer } from './game/game.reducer';
+import { gamesManager } from './games-manager/games-manager.reducer';
+const rootReducer = combineReducers({
+  game: gameReducer,
+  mainPage: gamesManager,
 });
+
+export default rootReducer;
+export type RootState = ReturnType<typeof rootReducer>;

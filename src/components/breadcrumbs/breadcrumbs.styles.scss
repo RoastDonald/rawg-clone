@@ -1,12 +1,20 @@
 .breadcrumbs {
-  font-size: 14px;
+  font-size: 1rem;
   text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 3.2rem;
 
-  &__crumb > * {
-    color: rgba(255, 255, 255, 0.8);
+  &__breadcrumb {
+    letter-spacing: 1.7px;
+    color: inherit;
+    transition: all 0.2s;
   }
 
-  &__separator {
-    margin: 0 10px;
+  &__breadcrumb:not(.dis-hov):hover {
+    color: #fff;
+  }
+
+  &__delimitr {
+    margin: 0 0.5rem;
   }
 }

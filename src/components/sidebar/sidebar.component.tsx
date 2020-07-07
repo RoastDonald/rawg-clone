@@ -12,11 +12,11 @@ interface IItem {
   iconID: string | null;
 }
 
-interface SidebarProps {
+type SidebarProps = {
   data: SidebarData;
-}
+};
 
-const Sidebar: React.FC<SidebarProps> = ({ data: sidebarSections }) => (
+const Sidebar = ({ data: sidebarSections }: SidebarProps) => (
   <div>
     <aside className="sidebar">
       <nav className="nav">
@@ -73,7 +73,7 @@ const ListItem: React.FC<IItem> = ({ iconID, title }) => {
       <NavLink
         className="list__link"
         activeClassName="list__link--active"
-        to="/da"
+        to="/"
       >
         <span className="list__icon-wrapper">{listIconElement}</span>
         <span>{title}</span>

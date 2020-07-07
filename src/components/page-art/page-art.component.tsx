@@ -1,11 +1,11 @@
 import React from 'react';
 import './page-art.styles.scss';
 
-interface PageArtProps {
+type PageArtProps = {
   backgroundImageURL: string;
-}
+};
 
-const PageArt: React.FC<PageArtProps> = ({ backgroundImageURL }) => {
+const PageArt = ({ backgroundImageURL }: PageArtProps) => {
   const imgIndx = backgroundImageURL.search('/games/') + '/games/'.length;
   const imgPath = backgroundImageURL.slice(imgIndx);
 

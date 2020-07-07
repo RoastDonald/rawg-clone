@@ -1,10 +1,29 @@
 .load-more {
+  width: 200px;
+  height: 48px;
+  background-color: hsla(0, 0%, 100%, 0.1);
+  color: hsla(0, 0%, 100%, 0.4);
+  font-size: 16px;
+  line-height: normal;
+  font-weight: 400;
+  border-radius: 10px;
   border: none;
   margin: 0 auto;
   padding: 1rem 2rem;
   display: flex;
   justify-content: center;
   align-content: center;
-  background-color: rgba($color: #fff, $alpha: 0.3);
   outline: none;
+  align-items: center;
+}
+
+.content-panel-columns {
+  justify-content: center;
+  width: 100%;
+  display: grid;
+  grid-gap: 2.4rem;
+}
+
+.content-panel-column > * + * {
+  margin-top: 2.4rem;
 }

@@ -1,39 +1,44 @@
 import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
-import routes, { IRoute } from '../../app-routes';
+import { NavLink, useLocation } from 'react-router-dom';
+import useBreadcrumbs from 'use-react-router-breadcrumbs';
 import './breadcrumbs.styles.scss';
-const Separator: React.FC<{}> = ({ children }) => (
-  <span className="breadcrumbs__separator">{children}</span>
-);
 
-const fix_withoutParams = (url: string) => {
-  const paramIndx = url.indexOf(':');
-  return url.slice(0, paramIndx - 1);
+const Breadcrumbs = () => {
+  let location = useLocation<{ name: string }>();
+  const route = [{ path: '/games/:slug', breadcrumb: location.state.name }];
+  const breadcrumbs = useBreadcrumbs(route);
+
+  return (
+    <div className="breadcrumbs">
+      {breadcrumbs.map(({ match, breadcrumb }, i) => {
+        if (breadcrumbs.length === i + 1) {
+          return (
+            <span>
+              <span
+                key="last-item"
+                className="breadcrumbs__breadcrumb dis-hov "
+              >
+                {breadcrumb}
+              </span>
+            </span>
+          );
+        }
+        return (
+          // tslint:disable-next-line: jsx-key
+          <React.Fragment>
+            <span key={match.url}>
+              <NavLink to={match.url} className="breadcrumbs__breadcrumb">
+                {breadcrumb}
+              </NavLink>
+            </span>
+            <span className="breadcrumbs__delimitr" key="delimitr">
+              /
+            </span>
+          </React.Fragment>
+        );
+      })}
+    </div>
+  );
 };
 
-const renderedCrumbs = (subdirectories: IRoute[]) => (
-  <ol style={{ listStyleType: 'none', display: 'flex' }}>
-    {subdirectories.map((subdir, key) => (
-      <li key={key} className="breadcrumbs__crumb">
-        <Link to={fix_withoutParams(subdir.path)}>
-          {subdir.name}
-          {key + 1 === subdirectories.length ? null : <Separator>/</Separator>}
-        </Link>
-      </li>
-    ))}
-  </ol>
-);
-
-const BreadCrumbs: React.FC<{}> = () => {
-  const currentURL = useLocation();
-  const subs = currentURL.pathname.split('/');
-  const subdirectories = subs
-    .map((sub: string, indx) => {
-      if (indx === 0) return routes['home'];
-      return routes[sub];
-    })
-    .filter((sub: IRoute) => sub);
-  return <div className="breadcrumbs">{renderedCrumbs(subdirectories)}</div>;
-};
-
-export default BreadCrumbs;
+export default Breadcrumbs;

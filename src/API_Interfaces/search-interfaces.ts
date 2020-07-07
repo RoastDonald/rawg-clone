@@ -18,6 +18,7 @@ interface User {
 }
 
 export interface Game {
+  charts: any;
   slug: string;
   name: string;
   playtime: number;

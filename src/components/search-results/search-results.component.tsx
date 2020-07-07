@@ -7,14 +7,14 @@ import { SearchAPI } from './SearchAPI';
 
 const DropdownContentWithLoad = withSpinner(DropdownContent);
 
-interface SearchResultsProps {
+type SearchResultsProps = {
   searchText: string;
   searchInputRef: RefObject<HTMLInputElement> | null;
-}
+};
 
-interface SearchResultState extends SearchResultsResponse {
+type SearchResultState = {
   isFetching: boolean;
-}
+} & SearchResultsResponse;
 
 class SearchResult extends React.Component<
   SearchResultsProps,

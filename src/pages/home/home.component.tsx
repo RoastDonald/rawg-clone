@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Header from '../../components/header/header.component';
 import Sidebar from '../../components/sidebar/sidebar.container';
 import DiscoverContent from '../../components/discover-content/discover-content.component';

@@ -1,0 +1,39 @@
+.filter-button-anim-enter {
+  opacity: 0;
+}
+.filter-button-anim-enter-active {
+  opacity: 1;
+  transition: all 200ms ease;
+}
+.filter-button-anim-exit {
+  opacity: 1;
+}
+.filter-button-anim-exit-active {
+  opacity: 0;
+  transition: all 200ms ease;
+}
+
+.search-anim-enter {
+  opacity: 0;
+}
+.search-anim-enter-active {
+  opacity: 1;
+  transition: opacity 200ms linear;
+}
+.search-anim-exit {
+  opacity: 1;
+}
+.search-anim-exit-active {
+  opacity: 0.2;
+  transition: opacity 200ms linear;
+}
+.search-anim-exit-done {
+  opacity: 0;
+}
+.search-anim-appear {
+  opacity: 0;
+}
+.search-anim-appear-active {
+  opacity: 1;
+  transition: opacity 200ms linear;
+}

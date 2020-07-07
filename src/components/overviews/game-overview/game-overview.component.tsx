@@ -5,18 +5,11 @@ import {
   Game,
   Platform,
 } from '../../../API_Interfaces/search-interfaces';
-import { Platforms } from './game-platforms';
 import styles from './game-overview.module.scss';
+import { getPlatform, platform } from '../../../utils/platform-parsing';
 
-interface GameOverviewProps {
+type GameOverviewProps = {
   games: GamesResponse | null;
-}
-
-type platform = keyof typeof Platforms;
-
-const getPlatform = (platform: platform) => {
-  platform = platform.split(' ')[0] as platform;
-  return Platforms[platform];
 };
 
 export const getPlatformsJSX = ({ platforms }: Game) => {
@@ -43,7 +36,7 @@ export const getPlatformsJSX = ({ platforms }: Game) => {
   );
 };
 
-export const GameOverview: React.FC<GameOverviewProps> = (props) => {
+export const GameOverview = (props: GameOverviewProps) => {
   if (!props.games?.count) return null;
 
   return (
@@ -76,7 +69,14 @@ export const GameOverview: React.FC<GameOverviewProps> = (props) => {
                   </div>
                 </div>
                 <div className={styles.gameName}>
-                  <Link to={`/games/${elem.slug}`}>{elem.name}</Link>
+                  <Link
+                    to={{
+                      pathname: `/games/${elem.slug}`,
+                      state: { name: elem.name },
+                    }}
+                  >
+                    {elem.name}
+                  </Link>
                 </div>
               </div>
             </div>

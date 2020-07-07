@@ -14,20 +14,22 @@ const Header: React.FC<{}> = () => {
     setReady(true);
   }, 600);
 
-  const handleBlur = () => {
-    setReady(false);
+  const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target);
+    setTimeout(() => setReady(false), 200);
   };
 
   const handleInputSearchTyping = (e: React.FormEvent<HTMLInputElement>) => {
     setSearchField(e.currentTarget.value);
-    setReady(false);
     onChangeDelay(e);
+    setReady(false);
   };
 
   const renderedSearchResult = () => {
     if (searchField && isReady) {
       return (
         <SearchResult
+          key="search-results"
           searchInputRef={searchInputRef}
           searchText={searchField}
         />
@@ -69,7 +71,7 @@ const Header: React.FC<{}> = () => {
           </a>
 
           <div className="header__dotted-container">
-            <label className="header__dotted"></label>
+            <label className="header__dotted" />
           </div>
         </div>
         {renderedSearchResult()}

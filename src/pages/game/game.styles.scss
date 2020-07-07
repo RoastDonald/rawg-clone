@@ -1,11 +1,132 @@
 .page__content {
-  align-content: center;
-  max-width: 100%;
   width: 100%;
+  display: flex;
+  max-width: 100%;
+  justify-content: center;
+}
+
+.game-content-columns {
+  display: flex;
+}
+
+.game-content-columns > div:first-child {
+  flex-direction: column;
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.game-content-columns > div:last-child {
+  flex: 0 0 auto;
+  margin-left: 48px;
+  width: 384px;
 }
 
 .content__wrapper {
-  display: flex;
   flex: 1 1 auto;
+  margin-top: 5px;
   max-width: 960px;
+}
+
+.game-cta {
+  font-size: 1.5rem;
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  &__button {
+    cursor: pointer;
+    color: #fff;
+    padding: 1.7rem 6rem;
+    border-radius: 10px;
+    outline: 0;
+    background-color: lighten($color: #222, $amount: 15);
+    border: 0;
+  }
+
+  &__button:nth-child(odd) {
+    background-color: transparent;
+    border: 1px solid #fff;
+  }
+}
+
+.game {
+  &__description {
+    margin-top: 3rem;
+    font-size: 1.4rem;
+  }
+
+  &__description > h3 {
+    margin: 1rem 0;
+  }
+
+  &__description > p:first-child {
+    font-size: 2rem;
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  &__name {
+    line-height: 1;
+  }
+
+  &__cta {
+    margin-top: 2rem;
+  }
+
+  &__meta {
+    margin-bottom: 24px;
+    display: flex;
+
+    & > *:not(:last-child) {
+      margin-right: 1.5rem;
+    }
+  }
+  &__platforms {
+    display: flex;
+  }
+  &__platform {
+    margin: 0 3px;
+    width: 2.1rem;
+    height: 1.6rem;
+    background-position: 50%;
+    line-height: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  &__release-date {
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.2rem 0.8rem;
+    font-size: 1.2rem;
+    color: black;
+    background-color: #fff;
+    border-radius: 5px;
+  }
+
+  &__meta-detailed {
+    margin-top: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.meta-block {
+  width: 50%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  &__title {
+    color: lighten($color: #222, $amount: 15);
+    font-size: 1.4rem;
+  }
+
+  &__content {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+  }
+}
+
+.game-video {
+  border-radius: 10px;
 }

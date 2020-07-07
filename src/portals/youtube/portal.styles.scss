@@ -1,0 +1,20 @@
+.youtube-portal-container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background: #151515;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__close-button {
+    cursor: pointer;
+    padding: 1.5rem;
+    border-radius: 50%;
+    background-color: firebrick;
+    position: absolute;
+    top: 17vh;
+    right: 14vw;
+  }
+}

@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
 import { ArrowDown } from './collapsed-items.styles';
 
-interface CollapsedItemsProps {
+type CollapsedItemsProps = {
   count: number;
-}
-interface ToggleButtonProps {
+  children: any;
+};
+type ToggleButtonProps = {
   text?: string;
   rotation?: number;
   handleClick: () => void;
-}
+};
 
-const ToggleButton: React.FC<ToggleButtonProps> = ({
+const ToggleButton = ({
   text,
   handleClick,
   rotation = 90,
-}) => {
+}: ToggleButtonProps) => {
   return (
     <li className="list__item" key={'collapsed'}>
       <div className="show-more" onClick={handleClick}>
@@ -27,7 +28,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
   );
 };
 
-const CollapsedItems: React.FC<CollapsedItemsProps> = ({ children, count }) => {
+const CollapsedItems = ({ children, count }: CollapsedItemsProps) => {
   const [isShown, triggerToggle] = useState(false);
 
   const childrenArray = React.Children.toArray(children);

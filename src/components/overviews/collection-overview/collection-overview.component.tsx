@@ -5,9 +5,9 @@ import {
   Collection,
 } from '../../../API_Interfaces/search-interfaces';
 import styles from './collection-overview.module.scss';
-interface CollectionOverviewProps {
+type CollectionOverviewProps = {
   collections: CollectionResponse | null;
-}
+};
 
 const getCards = (count: number, urls: Background[]) => {
   let cards = new Array(count).fill(null).map((val, index) => {
@@ -18,19 +18,17 @@ const getCards = (count: number, urls: Background[]) => {
           key={index}
           style={{ backgroundImage: `url(${resized})` }}
           className={styles.collection_card}
-        ></div>
+        />
       );
     } else {
-      return <div key={index} className={styles.collection_card}></div>;
+      return <div key={index} className={styles.collection_card} />;
     }
   });
 
   return cards;
 };
 
-export const CollectionOverview: React.FC<CollectionOverviewProps> = (
-  props
-) => {
+export const CollectionOverview = (props: CollectionOverviewProps) => {
   if (!props.collections?.count) return null;
   return (
     <section>

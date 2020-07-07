@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const DropdownContainer = styled.div`
-  z-index: 5;
+  z-index: 10000;
   top: 90px;
   left: 0;
   display: flex;

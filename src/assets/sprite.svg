@@ -6,7 +6,14 @@ xmlns:xlink="http://www.w3.org/1999/xlink"
 >
     <defs>
 
-      <symbol id="icon-plus" viewBox="0 0 12 12" >
+
+    <symbol id="icon-close">
+    <path d="M11.121 9.89l6.439-6.439a1.5 1.5 0 10-2.121-2.121L9 7.769 2.561 1.33A1.5 1.5 0 10.44 3.451L6.879 9.89.44 16.329a1.5 1.5 0 102.122 2.121l6.439-6.439 6.439 6.439c.293.293.677.439 1.061.439a1.5 1.5 0 001.061-2.56L11.121 9.89z" fill="#FFF" fill-rule="evenodd"></path>
+
+    </symbol>
+
+
+    <symbol id="icon-plus" viewBox="0 0 12 12" >
             <g  fill-rule="evenodd"><rect width="3" height="12" x="4.5" rx=".75"></rect><rect width="3" height="12" x="4.5" rx=".75" transform="rotate(-90 6 6)"></rect></g>
         </symbol>
 

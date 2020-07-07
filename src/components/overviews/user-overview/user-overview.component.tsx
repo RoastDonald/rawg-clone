@@ -2,9 +2,9 @@ import React from 'react';
 import { UsersResponse } from '../../../API_Interfaces/search-interfaces';
 import { CollectionSVG, GamesSvg } from './svgs';
 import styles from './user-overview.module.scss';
-interface UserOverviewProps {
+type UserOverviewProps = {
   users: UsersResponse | null;
-}
+};
 
 const getColor = () => {
   let H = Math.floor(Math.random() * 240);

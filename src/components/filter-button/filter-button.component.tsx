@@ -1,13 +1,39 @@
 import React, { useRef, useReducer } from 'react';
 import { useCallback } from 'react';
-import { Icons } from '../../assets/icons';
 import { CSSTransition } from 'react-transition-group';
-import { Link } from 'react-router-dom';
+import { ReactComponent as Arrow } from '../../assets/next.svg';
+import {
+  setOrderFilter,
+  setPlatformFilter,
+  setBothFilters,
+} from '../../redux/games-manager/games-manager.actions';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import './filter-button.scss';
+
+enum contentLinks {
+  RELEVANCE = 'relevance',
+  DATE = 'created',
+  NAME = 'ordering',
+  RELEASE_DATE = 'released',
+  POPULARITY = 'added',
+  AVERAGE_RATING = 'rating',
+
+  WEB = '14',
+  NINTENDO = '7',
+  LINUX = '6',
+  APPLE = '5',
+  ANDROID = '8',
+  IOS = '4',
+  XBOX = '3',
+  PLAYSTATION = '2',
+  PC = '1',
+}
 
 type filterButtonProps = {
   type: keyof typeof filterByOptions;
-};
+} & ReturnType<typeof mapDispatchToProps>;
+type children = Array<{ name: string; link: contentLinks }>;
 
 const filterByOptions = {
   Relevance: {
@@ -15,14 +41,37 @@ const filterByOptions = {
     defaultSelected: 'Relevance',
     withCleanup: false,
     title: 'Order by: ',
-    option: 'Popularity',
     items: [
-      { name: 'Relevance', link: '' },
-      { name: 'Date added', link: '' },
-      { name: 'Name', link: '' },
-      { name: 'Release date', link: '' },
-      { name: 'Popularity', link: '' },
-      { name: 'Average rating', link: '' },
+      {
+        name: 'Relevance',
+        link: contentLinks['RELEVANCE'],
+        children: null as children | null,
+      },
+      {
+        name: 'Date added',
+        link: contentLinks['DATE'],
+        children: null as children | null,
+      },
+      {
+        name: 'Name',
+        link: contentLinks['NAME'],
+        children: null as children | null,
+      },
+      {
+        name: 'Release date',
+        link: contentLinks['RELEASE_DATE'],
+        children: null as children | null,
+      },
+      {
+        name: 'Popularity',
+        link: contentLinks['POPULARITY'],
+        children: null as children | null,
+      },
+      {
+        name: 'Average rating',
+        link: contentLinks['AVERAGE_RATING'],
+        children: null as children | null,
+      },
     ],
   },
   Platforms: {
@@ -30,17 +79,59 @@ const filterByOptions = {
     defaultSelected: null,
     withCleanup: true,
     title: 'Platforms',
-    option: null,
     items: [
-      { name: 'PC', link: '' },
-      { name: 'PlayStation', link: '' },
-      { name: 'Xbox', link: '' },
-      { name: 'iOS', link: '' },
-      { name: 'Android', link: '' },
-      { name: 'Apple Macintosh', link: '' },
-      { name: 'Linux', link: '' },
-      { name: 'Nintendo', link: '' },
-      { name: 'Web', link: '' },
+      {
+        name: 'PC',
+        link: contentLinks['PC'],
+        children: null as children | null,
+      },
+      {
+        name: 'PlayStation',
+        link: contentLinks['PLAYSTATION'],
+        children: [
+          { name: 'PlayStation 4', link: contentLinks['NAME'] },
+          { name: 'PS Vita', link: contentLinks['NAME'] },
+          { name: 'PlayStation 5', link: contentLinks['NAME'] },
+        ] as children | null,
+      },
+      {
+        name: 'Xbox',
+        link: contentLinks['XBOX'],
+        children: [
+          { name: 'Xbox One', link: contentLinks['NAME'] },
+          { name: 'Xbox Series X', link: contentLinks['NAME'] },
+        ] as children | null,
+      },
+      {
+        name: 'iOS',
+        link: contentLinks['IOS'],
+        children: null as children | null,
+      },
+      {
+        name: 'Android',
+        link: contentLinks['ANDROID'],
+        children: null as children | null,
+      },
+      {
+        name: 'Apple Macintosh',
+        link: contentLinks['APPLE'],
+        children: null as children | null,
+      },
+      {
+        name: 'Linux',
+        link: contentLinks['LINUX'],
+        children: null as children | null,
+      },
+      {
+        name: 'Nintendo',
+        link: contentLinks['NINTENDO'],
+        children: null as children | null,
+      },
+      {
+        name: 'Web',
+        link: contentLinks['WEB'],
+        children: null as children | null,
+      },
     ],
   },
 };
@@ -49,8 +140,6 @@ type Action =
   | { type: ActionTypes.SET_OPEN; payload: boolean }
   | { type: ActionTypes.SET_SELECT; payload: string | null }
   | { type: ActionTypes.SET_BOTH; payload: initType };
-
-const initialState = { isOpen: false, select: null };
 
 type initType = {
   isOpen: boolean;
@@ -86,91 +175,136 @@ const reducer = (prevState: initType, action: Action): initType => {
   }
 };
 
-export const FilterButton = (props: filterButtonProps) => {
+export const FilterButton = ({ type, setOrderFilter }: filterButtonProps) => {
+  const filter = filterByOptions[type];
+  const initialState = { isOpen: false, select: filter.defaultSelected };
   const [state, dispatch] = useReducer(reducer, initialState);
-
   const { isOpen, select } = state;
+
   const dropdownRef = useRef<HTMLElement | null>(null);
-  const dropdownRefCB: React.RefCallback<{}> = useCallback((node: any) => {
+
+  const cbHandler = (node: any) => {
     if (dropdownRef.current)
       document.removeEventListener('mousedown', handleDropdownClick);
     if (node) document.addEventListener('mousedown', handleDropdownClick);
 
     dropdownRef.current = node;
-  }, []);
+  };
 
-  const handleBtnClick = () =>
+  const dropdownRefCB: React.RefCallback<{}> = useCallback(cbHandler, []);
+
+  const renderedContent = () => {
+    let withOption = true;
+    let option = null;
+    if (filter.defaultSelected === select) {
+      //init option
+      option = filter.defaultSelected;
+    } else if (filter.defaultSelected && select) {
+      //mutated option
+      option = select;
+    } else if (select) {
+      withOption = false;
+      option = select;
+    }
+    return (
+      <>
+        <span className="button__title">
+          {withOption ? filter.title : option}
+        </span>
+        {withOption && <span className="button__option">{option}</span>}
+      </>
+    );
+  };
+  const handleBtnClick = (): void =>
     dispatch({ type: ActionTypes.SET_OPEN, payload: true });
+
   const handleDropdownClick = (e: MouseEvent) => {
     if (dropdownRef?.current?.contains(e.target as Node)) return;
     dispatch({ type: ActionTypes.SET_OPEN, payload: false });
   };
-  const handleRedirect = useCallback((selectedVal: string) => {
+  const handleRedirect = (selectedVal: string, linkURL: string) => {
+    // if (filter.withCleanup) return setPlatformFilter(linkURL);
+    setOrderFilter(linkURL);
     dispatch({
       type: ActionTypes.SET_BOTH,
       payload: { select: selectedVal, isOpen: false },
     });
-  }, []);
-  console.log(isOpen);
-  const filter = filterByOptions[props.type];
+  };
   return (
     <div className="filter-button-container">
-      <button className="filter-button" onClick={handleBtnClick}>
+      <button
+        className={`filter-button ${
+          select && filter.withCleanup ? 'filter-button--active' : ''
+        }`}
+        onClick={handleBtnClick}
+      >
         <div className="filter-button__content">
-          <span className="button__title">{filter.title}</span>
-          <span className="button__option">{filter.option}</span>
-          <img className="button__image" src={Icons.ARROW} alt="arrow" />
+          {renderedContent()}
+          <Arrow className="button__image" />
         </div>
-        <CSSTransition
-          in={isOpen}
-          timeout={500}
-          classNames="filter-button-anim"
-        >
-          {isOpen ? (
-            <div
-              className="filter-button__dropdown"
-              ref={dropdownRefCB}
-              key={props.type}
-            >
-              <ul className="filter-button__list">
-                {filter.dropTitle && (
-                  <div className="filter-button__list-title">{props.type}</div>
-                )}
-                {select && filter.withCleanup && (
-                  <li
-                    className="filter-button__list-item filter-button__list-cleanup"
-                    onClick={() =>
-                      dispatch({ type: ActionTypes.SET_SELECT, payload: null })
-                    }
-                  >
-                    Clear
-                  </li>
-                )}
-                {filter.items.map((item) => (
-                  <li key={item.name} className="filter-button__list-item">
-                    <Link
-                      to="/"
-                      className="filter-button__list-item-link"
-                      onClick={() => handleRedirect(item.name)}
-                    >
-                      <span>{item.name}</span>
-                      {select !== item.name ? (
-                        <span className="filter-button__list-item--inactive" />
-                      ) : (
-                        <span className="filter-button__list-item--active" />
-                      )}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : (
-            <div />
-          )}
-        </CSSTransition>
       </button>
+      <CSSTransition
+        in={isOpen}
+        timeout={200}
+        classNames="filter-button-anim"
+        unmountOnExit={true}
+      >
+        <div className="filter-button__dropdown" ref={dropdownRefCB} key={type}>
+          <ul className="filter-button__list">
+            {filter.dropTitle && (
+              <div className="filter-button__list-title">{type}</div>
+            )}
+            {select && filter.withCleanup && (
+              <li
+                className="filter-button__list-item filter-button__list-cleanup"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  dispatch({ type: ActionTypes.SET_SELECT, payload: null });
+                }}
+              >
+                Clear
+              </li>
+            )}
+            {filter.items.map((item) => (
+              <li
+                key={item.name}
+                className="filter-button__list-item"
+                onClick={() => handleRedirect(item.name, item.link)}
+              >
+                <span className="filter-button__list-item-link">
+                  <span>{item.name}</span>
+                  {select !== item.name ? (
+                    <span className="filter-button__list-item--inactive" />
+                  ) : (
+                    <span className="filter-button__list-item--active" />
+                  )}
+                </span>
+                {item.children && (
+                  <div className="filter-button__childs">
+                    {item.children.map((child) => (
+                      <span
+                        key={child.name}
+                        className="filter-button__list-item-link"
+                      >
+                        <div className="filter-button__list-item filter-button__child">
+                          {child.name}
+                        </div>
+                      </span>
+                    ))}
+                    <div className="filter-button__select-all">Select all</div>
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </CSSTransition>
     </div>
   );
 };
 
-export default FilterButton;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  setOrderFilter: (URL: string) => dispatch(setOrderFilter(URL)),
+});
+
+export default connect(null, mapDispatchToProps)(FilterButton);
