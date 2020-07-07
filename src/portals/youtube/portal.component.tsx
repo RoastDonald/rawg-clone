@@ -19,7 +19,6 @@ const YoutubePortal = ({ setFullVid, videoURL }: YoutubePortalProps) => {
       autoplay: 1,
     },
   };
-  console.log('da');
   return ReactDOM.createPortal(
     <div className="youtube-portal-container">
       <YouTube

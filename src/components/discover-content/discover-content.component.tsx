@@ -52,7 +52,7 @@ const SettingsPanel: React.FC<{}> = () => {
               style={{
                 backgroundImage: `url(${Icons.DISPLAY_OPTION_2})`,
               }}
-              onClick={() => console.log(1)}
+              onClick={() => console.log(2)}
             />
           </div>
         </div>

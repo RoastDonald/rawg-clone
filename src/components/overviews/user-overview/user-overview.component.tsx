@@ -16,7 +16,6 @@ const resizeImage = (url: string) => {
 
 export const UserOverview = (props: UserOverviewProps) => {
   if (!props.users?.count) return null;
-  console.log(props);
   return (
     <section>
       <div className={styles.suggestionTitle}>

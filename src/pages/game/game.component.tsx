@@ -54,7 +54,6 @@ export const getPlatformsJSX = (game: GameInfo | null) => {
   return (
     <React.Fragment>
       {Array.from(uniqPlatforms.values()).map(({ name, id }, index: number) => {
-        console.log(1);
         return (
           <div
             key={id}

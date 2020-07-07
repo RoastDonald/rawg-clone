@@ -15,7 +15,6 @@ const Header: React.FC<{}> = () => {
   }, 600);
 
   const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target);
     setTimeout(() => setReady(false), 200);
   };
 
