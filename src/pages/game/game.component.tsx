@@ -21,8 +21,6 @@ import { Platforms } from '../../components/overviews/game-overview/game-platfor
 import { Platform } from '../../API_Interfaces/search-interfaces';
 
 import './game.styles.scss';
-import styles from '../../components/overviews/game-overview/game-overview.module.scss';
-import { PlatformElement } from '../../API_Interfaces/main-page-interfaces';
 
 interface IGamePageParams {
   slug: string;
